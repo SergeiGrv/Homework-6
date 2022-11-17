@@ -25,17 +25,41 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Список покупок:");
-                    for (int i = 0; i < purchases.size(); i++) {
-                        String purchase = purchases.get(i);
-                        System.out.println((purchases.indexOf(purchase)) + 1  + ". " + purchase);
-                    }
+                    print(purchases);
                     break;
                 case 3:
+                    System.out.println("Список покупок:");
+                    print(purchases);
                     System.out.println("Какую хотите удалить? Введите номер или название");
+                    input = scanner.nextLine();
+                    if (isNumeric(input)) {
+                        int deleteNumber = Integer.parseInt(input);
+                        purchases.remove(deleteNumber - 1);
+                    } else {
+                        purchases.remove(input);
+                    }
+                    System.out.println(purchases);
                     break;
                 default:
                     System.out.println("Такой операции нет!");
             }
         }
     }
+
+    public static void print(ArrayList<String> purchases) {
+        for (int i = 0; i < purchases.size(); i++) {
+            String purchase = purchases.get(i);
+            System.out.println((purchases.indexOf(purchase)) + 1 + ". " + purchase);
+        }
+    }
+
+    protected static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 }
