@@ -33,12 +33,11 @@ public class Main {
                     System.out.println("Какую хотите удалить? Введите номер или название");
                     input = scanner.nextLine();
                     if (isNumeric(input)) {
-                        int deleteNumber = Integer.parseInt(input);
-                        purchases.remove(deleteNumber - 1);
-                    } else {
-                        purchases.remove(input);
+                        purchases.remove(Integer.parseInt(input) - 1);
                     }
-                    System.out.println(purchases);
+                    purchases.remove(input);
+                    System.out.printf("Покупка %s удалена, список покупок: \n", purchases);
+                    print(purchases);
                     break;
                 default:
                     System.out.println("Такой операции нет!");
@@ -48,8 +47,7 @@ public class Main {
 
     public static void print(ArrayList<String> purchases) {
         for (int i = 0; i < purchases.size(); i++) {
-            String purchase = purchases.get(i);
-            System.out.println((purchases.indexOf(purchase)) + 1 + ". " + purchase);
+            System.out.printf("%d. %s \n", i + 1, purchases.get(i));
         }
     }
 
